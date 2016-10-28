@@ -25,17 +25,13 @@ def get_neighbors(s):
             if i != j:
                 tmp = s[:]
                 neighbors.append(swap_list_element(tmp, i, j))
-            else:
-                pass
 
     return neighbors
 
 
 def get_cost(path, graph):
-    cost = 0
-    for i in range(len(path) - 1):
-        cost += graph[path[i]][path[i + 1]]
-    return cost
+
+    return sum([graph[path[i]][path[i + 1]] for i in range(len(path) - 1)])
 
 
 def find_better_solusion(lst, s, graph):
@@ -48,7 +44,7 @@ def find_better_solusion(lst, s, graph):
         return s
 
 
-def tab_serch(graph, tab_max=10, n=1000):
+def tab_serch(graph, tab_max=3, n=2000):
 
     for i in range(n):
 
@@ -64,9 +60,10 @@ def tab_serch(graph, tab_max=10, n=1000):
             if not x in tab_list:
                 feisible_list.append(x)
 
-        s_ = find_better_solusion(feisible_list, s, graph)
-        s = s_
-        tab_list.append(s_)
+        s = find_better_solusion(feisible_list, s, graph)
+
+        if not s in tab_list:
+            tab_list.append(s)
 
         if len(tab_list) > tab_max:
             tab_list.pop(0)

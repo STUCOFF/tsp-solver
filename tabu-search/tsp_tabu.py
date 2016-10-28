@@ -6,9 +6,9 @@ def read_graph(fname):
     return np.loadtxt(fname, delimiter=",").astype(np.int64).tolist()
 
 
-def print_graph(graph):
-    for row in graph:
-        print(row)
+def print_graph(m, graph):
+    for row in m:
+        print(row, get_cost(row, graph))
 
 
 def swap_list_element(lst, i, j):
@@ -30,43 +30,41 @@ def get_neighbors(s):
 
 
 def get_cost(path, graph):
-
     return sum([graph[path[i]][path[i + 1]] for i in range(len(path) - 1)])
 
 
 def find_better_solusion(lst, s, graph):
-    sums = [get_cost(x, graph) for x in lst]
-    i = sums.index(min(sums))
+    costs = [get_cost(x, graph) for x in lst]
+    i = costs.index(min(costs))
 
-    if sums[i] < sum(s):
+    if costs[i] < get_cost(s, graph):
         return lst[i]
     else:
         return s
 
 
-def tab_serch(graph, tab_max=3, n=2000):
+def tab_serch(graph, tabu_max=10, step=100):
 
-    for i in range(n):
+    tabu_list = []
+    n = len(graph)
+    s = np.random.permutation(n).tolist()  # initil solution
 
-        n = len(graph)
-        s = np.random.permutation(n).tolist()  # initil solution
-
-        tab_list = []
+    for i in range(step):
 
         feisible_list = []
         neighbors = get_neighbors(s)
 
         for x in neighbors:
-            if not x in tab_list:
+            if not x in tabu_list:
                 feisible_list.append(x)
 
         s = find_better_solusion(feisible_list, s, graph)
 
-        if not s in tab_list:
-            tab_list.append(s)
+        if not s in tabu_list:
+            tabu_list.append(s)
 
-        if len(tab_list) > tab_max:
-            tab_list.pop(0)
+        if len(tabu_list) > tabu_max:
+            tabu_list.pop(0)
 
     return s
 

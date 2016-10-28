@@ -34,8 +34,7 @@ def get_neighbors(s):
 def get_cost(path, graph):
     cost = 0
     for i in range(len(path) - 1):
-        for j in range(1, len(path)):
-            cost += graph[i][j]
+        cost += graph[path[i]][path[i + 1]]
     return cost
 
 
@@ -49,7 +48,7 @@ def find_better_solusion(lst, s, graph):
         return s
 
 
-def tab_serch(graph, tab_max=10, n=500):
+def tab_serch(graph, tab_max=10, n=1000):
 
     for i in range(n):
 

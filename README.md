@@ -11,6 +11,9 @@
   Solve tsp using Tab-search  
 
 
+## Todo
+- see https://divide-et-impera.org/archives/1572  
+
 ## Lisence
 NYSL 
 - http://www.kmonos.net/nysl/

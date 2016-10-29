@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import argparse
+import os
+import sys
 import time
 import numpy as np
 
@@ -48,7 +51,20 @@ def experiment(solver, graph):
 
 
 def main():
-    graph = read_graph("graph.txt")
+
+    p = argparse.ArgumentParser(
+        description='This script is for experiment of solving TSP with TS and SA')
+    p.add_argument('-g', '--graph', type=str,
+                   help='path to graph csv file', required=True)
+
+    option_args = p.parse_known_args()[0]
+    path = option_args.graph
+
+    if not os.path.exists(path):
+        print("File not found")
+        sys.exit(1)
+
+    graph = read_graph(path)
 
     tabu_table = experiment(tabu_search, graph)
     sa_table = experiment(simulated_anealing, graph)

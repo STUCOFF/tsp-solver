@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import argparse
+import os
+import sys
 import numpy as np
 from utils import read_graph, print_graph, swap_list_element, \
     get_neighbors, get_cost, find_better_solusion
@@ -33,7 +36,19 @@ def tabu_search(graph, tabu_max=10, step=1000):
 
 
 def main():
-    graph = read_graph("graph.txt")
+    p = argparse.ArgumentParser(
+        description='This script is for solve TSP with tabu search')
+    p.add_argument('-g', '--graph', type=str,
+                   help='path to graph csv file', required=True)
+
+    option_args = p.parse_known_args()[0]
+    path = option_args.graph
+
+    if not os.path.exists(path):
+        print("File not found")
+        sys.exit(1)
+
+    graph = read_graph(path)
     s = tabu_search(graph)
     print('Answer')
     print("Path:", s, ", Cost:", get_cost(s, graph))

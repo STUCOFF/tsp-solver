@@ -13,12 +13,15 @@
 - tabu_search.py  
   Solve TSP using Tab-search  
 
-- simulated_annealing.py
+- simulated_annealing.py  
   Solve TSP using simulated-annealing  
 
 
+## Slide
+- https://masaponto.github.io/tsp-solver/  
+
 ## Todo
-- see https://divide-et-impera.org/archives/1572  
+- https://divide-et-impera.org/archives/1572  
 
 ## Lisence
 NYSL 

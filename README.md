@@ -5,6 +5,7 @@
 ## Require
 - graphviz (0.5.1)
 - numpy (1.11.2)
+- tabulate (0.7.5)
 
 ## Pragrams
 - util.py  

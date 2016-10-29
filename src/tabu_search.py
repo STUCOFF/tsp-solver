@@ -5,7 +5,7 @@ from utils import read_graph, print_graph, swap_list_element, \
     get_neighbors, get_cost, find_better_solusion
 
 
-def tab_serch(graph, tabu_max=10, step=10000):
+def tabu_search(graph, tabu_max=10, step=1000):
 
     tabu_list = []
     n = len(graph)
@@ -34,7 +34,7 @@ def tab_serch(graph, tabu_max=10, step=10000):
 
 def main():
     graph = read_graph("graph.txt")
-    s = tab_serch(graph)
+    s = tabu_search(graph)
     print('Answer')
     print("Path:", s, ", Cost:", get_cost(s, graph))
 

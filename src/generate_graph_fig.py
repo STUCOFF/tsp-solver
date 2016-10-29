@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import numpy as np
-from graphviz import Digraph
+from graphviz import Graph
 
 
 def read_graph(fname):
@@ -10,12 +10,11 @@ def read_graph(fname):
 
 def main():
     adj_matrix = read_graph("graph.txt")
-    g = Digraph(format='png')
+    g = Graph(format='png')
 
     for i in range(len(adj_matrix)):
-        for j in range(len(adj_matrix)):
-            if i != j:
-                g.edge(str(i), str(j), label=str(adj_matrix[i][j]))
+        for j in range(i + 1, len(adj_matrix)):
+            g.edge(str(i), str(j), label=str(adj_matrix[i][j]))
 
     g.render("figs/tsp_graph.gv")
 

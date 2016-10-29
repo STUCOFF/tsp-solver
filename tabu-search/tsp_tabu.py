@@ -48,6 +48,7 @@ def get_neighbors(s):
     >>> get_neighbors(lst)
     [[2, 1, 3], [3, 2, 1], [1, 3, 2]]
     """
+
     neighbors = []
     for i in range(len(s) - 1):
         for j in range(i + 1, len(s)):
@@ -71,11 +72,12 @@ def find_better_solusion(feisible_list, s, graph):
         return s
 
 
-def tab_serch(graph, tabu_max=10, step=100):
+def tab_serch(graph, tabu_max=10, step=10000):
 
     tabu_list = []
     n = len(graph)
     s = np.random.permutation(n).tolist()  # initil solution
+    tabu_list.append(s)
 
     for i in range(step):
 
@@ -101,7 +103,7 @@ def main():
     graph = read_graph("graph.txt")
     s = tab_serch(graph)
     print('Answer')
-    print(s, ":", get_cost(s, graph))
+    print("Path:", s, ", Cost:", get_cost(s, graph))
 
 if __name__ == "__main__":
     import doctest

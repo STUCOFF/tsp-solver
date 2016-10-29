@@ -7,7 +7,6 @@ from utils import read_graph, print_graph, get_neighbors, \
     get_cost, find_better_solusion
 
 
-@profile
 def simulated_anealing(graph, step=1000, a=0.5, q=10, t=50, t_min=0.001):
 
     n = len(graph)

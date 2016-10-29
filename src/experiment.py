@@ -39,8 +39,8 @@ def experiment(solver, graph):
     t_min = min(times)
     t_ave = np.average(times)
 
-    table = [costs + [c_max] + [c_min] + [c_min],
-             times + [t_max] + [t_min] + [t_min]]
+    table = [costs + [c_max] + [c_min] + [c_ave],
+             times + [t_max] + [t_min] + [t_ave]]
 
     header = [str(i) for i in range(1, 11)] + ["MAX", "MIN", "AVE"]
 

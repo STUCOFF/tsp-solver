@@ -1,0 +1,9 @@
+{
+  "name": "yourPresentationTitle",
+  "devDependencies": {
+      "live-server": "^1.0.0"
+  },
+  "scripts": {
+      "build": "./node_modules/.bin/live-server"
+  }
+}

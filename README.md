@@ -6,9 +6,15 @@
 - graphviz (0.5.1)
 - numpy (1.11.2)
 
-## Directories
-- tabu-search  
-  Solve tsp using Tab-search  
+## Pragrams
+- util.py  
+  utilities  
+
+- tabu_search.py  
+  Solve TSP using Tab-search  
+
+- simulated_annealing.py
+  Solve TSP using simulated-annealing  
 
 
 ## Todo

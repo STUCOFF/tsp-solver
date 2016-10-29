@@ -18,7 +18,7 @@ def simulated_anealing(graph, step=1000, a=0.5, q=10, t=50, t_min=0.001):
         e = get_cost(s, graph)
         e_next = get_cost(s_next, graph)
 
-        if e < e_next:
+        if e_next < e:
             s = s_next
         else:
             if random.random() <= probability(e, e_next, t):

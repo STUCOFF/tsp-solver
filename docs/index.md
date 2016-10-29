@@ -28,8 +28,9 @@
 
 
 ## Parameters of SA
-- Update temprature (t): t = a * t,  (a = 0.5)
-- Intitial temprature = 50
+- Update temperature (t): t = a * t,  (a = 0.5)
+- Intitial temperature: 50
+- Minimum temperature: 0.001
 - Equilibrium state: 10 (= Q) times transitions
 - Number of loop: 1,000
 

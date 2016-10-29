@@ -1,0 +1,33 @@
+Answer
+Path: [4, 0, 5, 2, 1, 3] , Cost: 12
+Filename: simulated_annealing.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    10   26.180 MiB    0.000 MiB   @profile
+    11                             def simulated_anealing(graph, step=1000, a=0.5, q=10, t=50, t_min=0.001):
+    12                             
+    13   26.180 MiB    0.000 MiB       n = len(graph)
+    14   26.273 MiB    0.094 MiB       s = np.random.permutation(n).tolist()  # initil solution
+    15                             
+    16   26.605 MiB    0.332 MiB       for i in range(step):
+    17   26.605 MiB    0.000 MiB           s_next = find_better_solusion(get_neighbors(s), s, graph)
+    18                             
+    19   26.605 MiB    0.000 MiB           e = get_cost(s, graph)
+    20   26.605 MiB    0.000 MiB           e_next = get_cost(s_next, graph)
+    21                             
+    22   26.605 MiB    0.000 MiB           if e < e_next:
+    23                                         s = s_next
+    24                                     else:
+    25   26.605 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
+    26   26.605 MiB    0.000 MiB                   s = s_next
+    27                             
+    28   26.605 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
+    29   26.605 MiB    0.000 MiB               t = a * t
+    30                             
+    31   26.605 MiB    0.000 MiB           if t < t_min:
+    32   26.609 MiB    0.004 MiB               return s
+    33                             
+    34                                 return s
+
+

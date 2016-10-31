@@ -8,7 +8,7 @@
 - tabulate (0.7.5)
 - roswell (read https://github.com/roswell/roswell#installation)
 
-## Pragrams
+## Programs
 - util.py  
   utilities  
 
@@ -21,12 +21,17 @@
 - util/make-graph.ros  
   Make graph randomly using roswell
 
+## Tools
+- memory-profiler (0.41)  
+  For memroy usage experiment  
+
+- graphviz (0.5.1)  
+  For generate graph image  
+
+
 ## Experimental Results
 - https://github.com/masaponto/tsp-solver/blob/master/docs/index.md  
 - https://masaponto.github.io/tsp-solver/  
-
-## Todo
-- https://divide-et-impera.org/archives/1572  
 
 ## Lisence
 NYSL 

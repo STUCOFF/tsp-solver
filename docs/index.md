@@ -266,7 +266,7 @@ Line #    Mem usage    Increment   Line Contents
 |         |  TS     |        SA | 
 |--------:|--------:|----------:|
 | Result  |  o      |    o      |
-    | Time    |  o      |    o      |
+| Time    |  o      |    o      |
 | Memory  |  o      |    o      |
 
 

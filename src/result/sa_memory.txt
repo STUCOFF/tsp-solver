@@ -1,33 +1,36 @@
 Answer
-Path: [4, 0, 5, 2, 1, 3] , Cost: 12
+Path: [7, 11, 10, 1, 6, 8, 12, 0, 4, 9, 2, 3, 14, 5, 13] , Cost: 21
 Filename: simulated_annealing.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    10   26.180 MiB    0.000 MiB   @profile
-    11                             def simulated_anealing(graph, step=1000, a=0.5, q=10, t=50, t_min=0.001):
-    12                             
-    13   26.180 MiB    0.000 MiB       n = len(graph)
-    14   26.273 MiB    0.094 MiB       s = np.random.permutation(n).tolist()  # initil solution
-    15                             
-    16   26.605 MiB    0.332 MiB       for i in range(step):
-    17   26.605 MiB    0.000 MiB           s_next = find_better_solusion(get_neighbors(s), s, graph)
+    13   28.359 MiB    0.000 MiB   @profile
+    14                             def simulated_anealing(graph, step=10000, a=0.5, q=1000, t=50, t_min=0.000001, count_max=100):
+    15   28.359 MiB    0.000 MiB       count = 0
+    16   28.359 MiB    0.000 MiB       n = len(graph)
+    17   28.359 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
     18                             
-    19   26.605 MiB    0.000 MiB           e = get_cost(s, graph)
-    20   26.605 MiB    0.000 MiB           e_next = get_cost(s_next, graph)
+    19   28.359 MiB    0.000 MiB       for i in range(step):
+    20   28.359 MiB    0.000 MiB           s_next = find_better_solusion(get_neighbors(s), s, graph)
     21                             
-    22   26.605 MiB    0.000 MiB           if e < e_next:
-    23                                         s = s_next
-    24                                     else:
-    25   26.605 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
-    26   26.605 MiB    0.000 MiB                   s = s_next
+    22   28.359 MiB    0.000 MiB           e = get_cost(s, graph)
+    23   28.359 MiB    0.000 MiB           e_next = get_cost(s_next, graph)
+    24                             
+    25   28.359 MiB    0.000 MiB           if s == s_next:
+    26   28.359 MiB    0.000 MiB               count += 1
     27                             
-    28   26.605 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
-    29   26.605 MiB    0.000 MiB               t = a * t
-    30                             
-    31   26.605 MiB    0.000 MiB           if t < t_min:
-    32   26.609 MiB    0.004 MiB               return s
+    28   28.359 MiB    0.000 MiB           if e_next < e:
+    29   28.359 MiB    0.000 MiB               s = s_next
+    30                                     else:
+    31   28.359 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
+    32   28.359 MiB    0.000 MiB                   s = s_next
     33                             
-    34                                 return s
+    34   28.359 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
+    35   28.359 MiB    0.000 MiB               t = a * t
+    36                             
+    37   28.359 MiB    0.000 MiB           if count > count_max:
+    38   28.359 MiB    0.000 MiB               return s
+    39                             
+    40                                 return s
 
 

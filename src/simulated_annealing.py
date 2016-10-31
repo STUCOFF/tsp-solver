@@ -10,8 +10,9 @@ from utils import read_graph, print_graph, get_neighbors, \
     get_cost, find_better_solusion
 
 
-def simulated_anealing(graph, step=20000, a=0.5, q=1000, t=50, t_min=0.000001):
-
+@profile
+def simulated_anealing(graph, step=10000, a=0.5, q=1000, t=50, t_min=0.000001, count_max=100):
+    count = 0
     n = len(graph)
     s = np.random.permutation(n).tolist()  # initil solution
 
@@ -20,6 +21,9 @@ def simulated_anealing(graph, step=20000, a=0.5, q=1000, t=50, t_min=0.000001):
 
         e = get_cost(s, graph)
         e_next = get_cost(s_next, graph)
+
+        if s == s_next:
+            count += 1
 
         if e_next < e:
             s = s_next
@@ -30,7 +34,7 @@ def simulated_anealing(graph, step=20000, a=0.5, q=1000, t=50, t_min=0.000001):
         if i % q == 0:  # Equilibrium state
             t = a * t
 
-        if t < t_min:
+        if count > count_max:
             return s
 
     return s

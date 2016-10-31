@@ -8,8 +8,9 @@ from utils import read_graph, print_graph, swap_list_element, \
     get_neighbors, get_cost, find_better_solusion
 
 
-def tabu_search(graph, tabu_max=10, step=1000):
-
+@profile
+def tabu_search(graph, tabu_max=500, step=10000, count_max=100):
+    count = 0
     tabu_list = []
     n = len(graph)
     s = np.random.permutation(n).tolist()  # initil solution
@@ -24,13 +25,21 @@ def tabu_search(graph, tabu_max=10, step=1000):
             if not x in tabu_list:
                 feisible_list.append(x)
 
-        s = find_better_solusion(feisible_list, s, graph)
+        s_next = find_better_solusion(feisible_list, s, graph)
+
+        if s == s_next:
+            count += 1
+
+        s = s_next
 
         if not s in tabu_list:
             tabu_list.append(s)
 
         if len(tabu_list) > tabu_max:
             tabu_list.pop(0)
+
+        if count > count_max:
+            return s
 
     return s
 

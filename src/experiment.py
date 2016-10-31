@@ -42,10 +42,10 @@ def experiment(solver, graph):
     t_min = min(times)
     t_ave = np.average(times)
 
-    table = [costs + [c_max] + [c_min] + [c_ave],
-             times + [t_max] + [t_min] + [t_ave]]
+    table = [["Cost"] + [c_max] + [c_min] + [c_ave],
+             ["Time [s]"] + [t_max] + [t_min] + [t_ave]]
 
-    header = [str(i) for i in range(1, 11)] + ["MAX", "MIN", "AVE"]
+    header = [" ", "MAX", "MIN", "AVE"]
 
     return tabulate(table, header, tablefmt="pipe")
 

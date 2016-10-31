@@ -18,7 +18,7 @@
 - simulated_annealing.py  
   Solve TSP using simulated-annealing  
 
-- util/make-graph.ros
+- util/make-graph.ros  
   Make graph randomly using roswell
 
 ## Experimental Results

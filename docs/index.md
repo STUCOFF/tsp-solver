@@ -44,62 +44,64 @@
 
 
 ## Result: Path cost and time 
-### TS
+## TS
 |          |         MAX |         MIN |         AVE |
 |:---------|------------:|------------:|------------:|
-| Cost     | 13          | 10          | 11          |
-| Time [s] |  0.00967526 |  0.00919032 |  0.00946555 |
+| Cost     | 14          | 10          | 11.3        |
+| Time [s] |  0.00970888 |  0.00899458 |  0.00927832 |
 
-### SA
+## SA
 |          |        MAX |        MIN |        AVE |
 |:---------|-----------:|-----------:|-----------:|
-| Cost     | 13         | 10         | 10.8       |
-| Time [s] |  0.0151434 |  0.0104423 |  0.0112318 |
+| Cost     | 14         | 10         | 10.8       |
+| Time [s] |  0.0105474 |  0.0102334 |  0.0103969 |
 
 
 
 ## Result: Memory usage of TS
 ```txt
 Answer
-Path: [4, 5, 3, 1, 0, 2] , Cost: 10
+Path: [4, 2, 0, 5, 3, 1] , Cost: 12
 Filename: tabu_search.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    11   28.363 MiB    0.000 MiB   @profile
+    11   28.359 MiB    0.000 MiB   @profile
     12                             def tabu_search(graph, tabu_max=500, step=10000, count_max=100):
-    13   28.363 MiB    0.000 MiB       count = 0
-    14   28.363 MiB    0.000 MiB       tabu_list = []
-    15   28.363 MiB    0.000 MiB       n = len(graph)
-    16   28.363 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
-    17   28.363 MiB    0.000 MiB       tabu_list.append(s)
+    13   28.359 MiB    0.000 MiB       count = 0
+    14   28.359 MiB    0.000 MiB       tabu_list = []
+    15   28.359 MiB    0.000 MiB       n = len(graph)
+    16   28.359 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
+    17   28.359 MiB    0.000 MiB       tabu_list.append(s)
     18                             
-    19   28.363 MiB    0.000 MiB       for i in range(step):
+    19   28.359 MiB    0.000 MiB       for i in range(step):
     20                             
-    21   28.363 MiB    0.000 MiB           feisible_list = []
-    22   28.363 MiB    0.000 MiB           neighbors = get_neighbors(s)
+    21   28.359 MiB    0.000 MiB           feisible_list = []
+    22   28.359 MiB    0.000 MiB           neighbors = get_neighbors(s)
     23                             
-    24   28.363 MiB    0.000 MiB           for x in neighbors:
-    25   28.363 MiB    0.000 MiB               if not x in tabu_list:
-    26   28.363 MiB    0.000 MiB                   feisible_list.append(x)
+    24   28.359 MiB    0.000 MiB           for x in neighbors:
+    25   28.359 MiB    0.000 MiB               if not x in tabu_list:
+    26   28.359 MiB    0.000 MiB                   feisible_list.append(x)
     27                             
-    28   28.363 MiB    0.000 MiB           s_next = find_better_solusion(feisible_list, s, graph)
+    28   28.359 MiB    0.000 MiB           s_next = find_better_solusion(feisible_list, s, graph)
     29                             
-    30   28.363 MiB    0.000 MiB           if s == s_next:
-    31   28.363 MiB    0.000 MiB               count += 1
-    32                             
-    33   28.363 MiB    0.000 MiB           s = s_next
+    30   28.359 MiB    0.000 MiB           if s == s_next:
+    31   28.359 MiB    0.000 MiB               count += 1
+    32                                     else:
+    33   28.359 MiB    0.000 MiB               count = 0
     34                             
-    35   28.363 MiB    0.000 MiB           if not s in tabu_list:
-    36   28.363 MiB    0.000 MiB               tabu_list.append(s)
-    37                             
-    38   28.363 MiB    0.000 MiB           if len(tabu_list) > tabu_max:
-    39                                         tabu_list.pop(0)
-    40                             
-    41   28.363 MiB    0.000 MiB           if count > count_max:
-    42   28.363 MiB    0.000 MiB               return s
-    43                             
-    44                                 return s
+    35   28.359 MiB    0.000 MiB           s = s_next
+    36                             
+    37   28.359 MiB    0.000 MiB           if not s in tabu_list:
+    38   28.359 MiB    0.000 MiB               tabu_list.append(s)
+    39                             
+    40   28.359 MiB    0.000 MiB           if len(tabu_list) > tabu_max:
+    41                                         tabu_list.pop(0)
+    42                             
+    43   28.359 MiB    0.000 MiB           if count > count_max:
+    44   28.359 MiB    0.000 MiB               return s
+    45                             
+    46                                 return s
 ```
 
 
@@ -112,34 +114,36 @@ Filename: simulated_annealing.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    13   28.402 MiB    0.000 MiB   @profile
+    13   28.117 MiB    0.000 MiB   @profile
     14                             def simulated_anealing(graph, step=10000, a=0.5, q=1000, t=50, t_min=0.000001, count_max=100):
-    15   28.402 MiB    0.000 MiB       count = 0
-    16   28.402 MiB    0.000 MiB       n = len(graph)
-    17   28.402 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
+    15   28.117 MiB    0.000 MiB       count = 0
+    16   28.117 MiB    0.000 MiB       n = len(graph)
+    17   28.117 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
     18                             
-    19   28.402 MiB    0.000 MiB       for i in range(step):
-    20   28.402 MiB    0.000 MiB           s_next = find_better_solusion(get_neighbors(s), s, graph)
+    19   28.117 MiB    0.000 MiB       for i in range(step):
+    20   28.117 MiB    0.000 MiB           s_next = find_better_solusion(get_neighbors(s), s, graph)
     21                             
-    22   28.402 MiB    0.000 MiB           e = get_cost(s, graph)
-    23   28.402 MiB    0.000 MiB           e_next = get_cost(s_next, graph)
+    22   28.117 MiB    0.000 MiB           e = get_cost(s, graph)
+    23   28.117 MiB    0.000 MiB           e_next = get_cost(s_next, graph)
     24                             
-    25   28.402 MiB    0.000 MiB           if s == s_next:
-    26   28.402 MiB    0.000 MiB               count += 1
-    27                             
-    28   28.402 MiB    0.000 MiB           if e_next < e:
-    29   28.402 MiB    0.000 MiB               s = s_next
-    30                                     else:
-    31   28.402 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
-    32   28.402 MiB    0.000 MiB                   s = s_next
-    33                             
-    34   28.402 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
-    35   28.402 MiB    0.000 MiB               t = a * t
-    36                             
-    37   28.402 MiB    0.000 MiB           if count > count_max:
-    38   28.402 MiB    0.000 MiB               return s
-    39                             
-    40                                 return s
+    25   28.117 MiB    0.000 MiB           if s == s_next:
+    26   28.117 MiB    0.000 MiB               count += 1
+    27                                     else:
+    28   28.117 MiB    0.000 MiB               count = 0
+    29                             
+    30   28.117 MiB    0.000 MiB           if e_next < e:
+    31   28.117 MiB    0.000 MiB               s = s_next
+    32                                     else:
+    33   28.117 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
+    34   28.117 MiB    0.000 MiB                   s = s_next
+    35                             
+    36   28.117 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
+    37   28.117 MiB    0.000 MiB               t = a * t
+    38                             
+    39   28.117 MiB    0.000 MiB           if count > count_max:
+    40   28.117 MiB    0.000 MiB               return s
+    41                             
+    42                                 return s
 ```
 
 
@@ -154,61 +158,63 @@ Line #    Mem usage    Increment   Line Contents
 ## Result: Path cost and time
 
 ## TS
-|          |       MAX |        MIN |        AVE |
-|:---------|----------:|-----------:|-----------:|
-| Cost     | 27        | 16         | 20.7       |
-| Time [s] |  0.118987 |  0.0871475 |  0.0998615 |
+|          |        MAX |        MIN |        AVE |
+|:---------|-----------:|-----------:|-----------:|
+| Cost     | 20         | 13         | 17.3       |
+| Time [s] |  0.0990255 |  0.0883646 |  0.0946415 |
 
 ## SA
-|          |      MAX |        MIN |        AVE |
-|:---------|---------:|-----------:|-----------:|
-| Cost     | 24       | 16         | 19.6       |
-| Time [s] |  0.12362 |  0.0881906 |  0.0953553 |
+|          |        MAX |        MIN |        AVE |
+|:---------|-----------:|-----------:|-----------:|
+| Cost     | 24         | 20         | 21.5       |
+| Time [s] |  0.0909619 |  0.0871007 |  0.0883519 |
 
 
 
 ## Result: Memory usage of TS
 ```txt
 Answer
-Path: [6, 3, 9, 2, 5, 11, 10, 1, 12, 8, 7, 14, 4, 0, 13] , Cost: 19
+Path: [14, 4, 9, 3, 1, 6, 13, 5, 7, 11, 10, 2, 8, 0, 12] , Cost: 21
 Filename: tabu_search.py
 
 Line #    Mem usage    Increment   Line Contents
 ================================================
-    11   28.363 MiB    0.000 MiB   @profile
+    11   28.367 MiB    0.000 MiB   @profile
     12                             def tabu_search(graph, tabu_max=500, step=10000, count_max=100):
-    13   28.363 MiB    0.000 MiB       count = 0
-    14   28.363 MiB    0.000 MiB       tabu_list = []
-    15   28.363 MiB    0.000 MiB       n = len(graph)
-    16   28.363 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
-    17   28.363 MiB    0.000 MiB       tabu_list.append(s)
+    13   28.367 MiB    0.000 MiB       count = 0
+    14   28.367 MiB    0.000 MiB       tabu_list = []
+    15   28.367 MiB    0.000 MiB       n = len(graph)
+    16   28.367 MiB    0.000 MiB       s = np.random.permutation(n).tolist()  # initil solution
+    17   28.367 MiB    0.000 MiB       tabu_list.append(s)
     18                             
-    19   28.363 MiB    0.000 MiB       for i in range(step):
+    19   28.367 MiB    0.000 MiB       for i in range(step):
     20                             
-    21   28.363 MiB    0.000 MiB           feisible_list = []
-    22   28.363 MiB    0.000 MiB           neighbors = get_neighbors(s)
+    21   28.367 MiB    0.000 MiB           feisible_list = []
+    22   28.367 MiB    0.000 MiB           neighbors = get_neighbors(s)
     23                             
-    24   28.363 MiB    0.000 MiB           for x in neighbors:
-    25   28.363 MiB    0.000 MiB               if not x in tabu_list:
-    26   28.363 MiB    0.000 MiB                   feisible_list.append(x)
+    24   28.367 MiB    0.000 MiB           for x in neighbors:
+    25   28.367 MiB    0.000 MiB               if not x in tabu_list:
+    26   28.367 MiB    0.000 MiB                   feisible_list.append(x)
     27                             
-    28   28.363 MiB    0.000 MiB           s_next = find_better_solusion(feisible_list, s, graph)
+    28   28.367 MiB    0.000 MiB           s_next = find_better_solusion(feisible_list, s, graph)
     29                             
-    30   28.363 MiB    0.000 MiB           if s == s_next:
-    31   28.363 MiB    0.000 MiB               count += 1
-    32                             
-    33   28.363 MiB    0.000 MiB           s = s_next
+    30   28.367 MiB    0.000 MiB           if s == s_next:
+    31   28.367 MiB    0.000 MiB               count += 1
+    32                                     else:
+    33   28.367 MiB    0.000 MiB               count = 0
     34                             
-    35   28.363 MiB    0.000 MiB           if not s in tabu_list:
-    36   28.363 MiB    0.000 MiB               tabu_list.append(s)
-    37                             
-    38   28.363 MiB    0.000 MiB           if len(tabu_list) > tabu_max:
-    39                                         tabu_list.pop(0)
-    40                             
-    41   28.363 MiB    0.000 MiB           if count > count_max:
-    42   28.363 MiB    0.000 MiB               return s
-    43                             
-    44                                 return s
+    35   28.367 MiB    0.000 MiB           s = s_next
+    36                             
+    37   28.367 MiB    0.000 MiB           if not s in tabu_list:
+    38   28.367 MiB    0.000 MiB               tabu_list.append(s)
+    39                             
+    40   28.367 MiB    0.000 MiB           if len(tabu_list) > tabu_max:
+    41                                         tabu_list.pop(0)
+    42                             
+    43   28.367 MiB    0.000 MiB           if count > count_max:
+    44   28.367 MiB    0.000 MiB               return s
+    45                             
+    46                                 return s
 ```
 
 
@@ -216,7 +222,7 @@ Line #    Mem usage    Increment   Line Contents
 ## Result: Memory usage of SA
 ```txt
 Answer
-Path: [7, 11, 10, 1, 6, 8, 12, 0, 4, 9, 2, 3, 14, 5, 13] , Cost: 21
+Path: [6, 1, 10, 11, 5, 4, 9, 3, 2, 12, 13, 0, 8, 7, 14] , Cost: 22
 Filename: simulated_annealing.py
 
 Line #    Mem usage    Increment   Line Contents
@@ -235,20 +241,22 @@ Line #    Mem usage    Increment   Line Contents
     24                             
     25   28.359 MiB    0.000 MiB           if s == s_next:
     26   28.359 MiB    0.000 MiB               count += 1
-    27                             
-    28   28.359 MiB    0.000 MiB           if e_next < e:
-    29   28.359 MiB    0.000 MiB               s = s_next
-    30                                     else:
-    31   28.359 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
-    32   28.359 MiB    0.000 MiB                   s = s_next
-    33                             
-    34   28.359 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
-    35   28.359 MiB    0.000 MiB               t = a * t
-    36                             
-    37   28.359 MiB    0.000 MiB           if count > count_max:
-    38   28.359 MiB    0.000 MiB               return s
-    39                             
-    40                                 return s
+    27                                     else:
+    28   28.359 MiB    0.000 MiB               count = 0
+    29                             
+    30   28.359 MiB    0.000 MiB           if e_next < e:
+    31   28.359 MiB    0.000 MiB               s = s_next
+    32                                     else:
+    33   28.359 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
+    34   28.359 MiB    0.000 MiB                   s = s_next
+    35                             
+    36   28.359 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
+    37   28.359 MiB    0.000 MiB               t = a * t
+    38                             
+    39   28.359 MiB    0.000 MiB           if count > count_max:
+    40   28.359 MiB    0.000 MiB               return s
+    41                             
+    42                                 return s
 ```
 
 
@@ -256,16 +264,16 @@ Line #    Mem usage    Increment   Line Contents
 ### Comparison: Experiment 1
 |         |  TS     |        SA | 
 |--------:|--------:|----------:|
-| Result  |  o      |    o      |
+| Result  |         |   o       |
 | Time    |  o      |           |
-| Memory  |  o      |    o      |
+| Memory  |         |    o      |
 
 
 
 ### Comparison: Experiment 2
 |         |  TS     |        SA | 
 |--------:|--------:|----------:|
-| Result  |  o      |    o      |
+| Result  |  o      |           |
 | Time    |  o      |    o      |
 | Memory  |  o      |    o      |
 
@@ -275,6 +283,7 @@ Line #    Mem usage    Increment   Line Contents
 - In TS and SA, the performance were almost same.
 - The memory useage is based on importing python library.
 - If we implent by basic lang like C, the result will be changed.
+- We need to try experiment more.
 
 
 

@@ -29,6 +29,8 @@ def tabu_search(graph, tabu_max=500, step=10000, count_max=100):
 
         if s == s_next:
             count += 1
+        else:
+            count = 0
 
         s = s_next
 

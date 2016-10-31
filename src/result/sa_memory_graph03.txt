@@ -1,5 +1,5 @@
 Answer
-Path: [7, 11, 10, 1, 6, 8, 12, 0, 4, 9, 2, 3, 14, 5, 13] , Cost: 21
+Path: [6, 1, 10, 11, 5, 4, 9, 3, 2, 12, 13, 0, 8, 7, 14] , Cost: 22
 Filename: simulated_annealing.py
 
 Line #    Mem usage    Increment   Line Contents
@@ -18,19 +18,21 @@ Line #    Mem usage    Increment   Line Contents
     24                             
     25   28.359 MiB    0.000 MiB           if s == s_next:
     26   28.359 MiB    0.000 MiB               count += 1
-    27                             
-    28   28.359 MiB    0.000 MiB           if e_next < e:
-    29   28.359 MiB    0.000 MiB               s = s_next
-    30                                     else:
-    31   28.359 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
-    32   28.359 MiB    0.000 MiB                   s = s_next
-    33                             
-    34   28.359 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
-    35   28.359 MiB    0.000 MiB               t = a * t
-    36                             
-    37   28.359 MiB    0.000 MiB           if count > count_max:
-    38   28.359 MiB    0.000 MiB               return s
-    39                             
-    40                                 return s
+    27                                     else:
+    28   28.359 MiB    0.000 MiB               count = 0
+    29                             
+    30   28.359 MiB    0.000 MiB           if e_next < e:
+    31   28.359 MiB    0.000 MiB               s = s_next
+    32                                     else:
+    33   28.359 MiB    0.000 MiB               if random.random() <= probability(e, e_next, t):
+    34   28.359 MiB    0.000 MiB                   s = s_next
+    35                             
+    36   28.359 MiB    0.000 MiB           if i % q == 0:  # Equilibrium state
+    37   28.359 MiB    0.000 MiB               t = a * t
+    38                             
+    39   28.359 MiB    0.000 MiB           if count > count_max:
+    40   28.359 MiB    0.000 MiB               return s
+    41                             
+    42                                 return s
 
 

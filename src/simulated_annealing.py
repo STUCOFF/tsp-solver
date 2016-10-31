@@ -24,6 +24,8 @@ def simulated_anealing(graph, step=10000, a=0.5, q=1000, t=50, t_min=0.000001, c
 
         if s == s_next:
             count += 1
+        else:
+            count = 0
 
         if e_next < e:
             s = s_next

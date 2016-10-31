@@ -279,7 +279,7 @@ Line #    Mem usage    Increment   Line Contents
 
 
 
-### Conclusion
+### Discussion & Conclusion
 - In TS and SA, the performance were almost same.
 - The memory useage is based on importing python library.
 - If we implent by basic lang like C, the result will be changed.
